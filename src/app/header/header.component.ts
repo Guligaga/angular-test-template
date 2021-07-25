@@ -41,7 +41,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     const lang = navigator.language.slice(0, 2);
-    console.log('onInit', lang)
     this.store.dispatch(languageActions.change({language: lang}))
   }
 

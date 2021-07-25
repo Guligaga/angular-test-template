@@ -58,9 +58,8 @@ export class ProductDataNormalizeService {
   }
 
   private get ingredients(): string {
-    console.log('Search', this.language)
     return this.data[`ingredients_text_with_allergens_${this.language}`]
-      // || this.data['ingredients_text_with_allergens_en']
+      // || this.data['ingredients_text_with_allergens_en'] // this comment shows alternative realisation
       || 'No available ingredients list on current locale';
   }
 

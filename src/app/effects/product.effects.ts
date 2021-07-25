@@ -29,14 +29,12 @@ export class ProductEffects {
   search$ = createEffect(() =>
     this.actions$.pipe(
       ofType(productActions.search),
-      mergeMap(action => {
-        console.log('action', action);
-        return this.productService.searchProduct(action.query).pipe(
-            map(response => (productActions.searchSuccess(response))),
-            catchError((err) => of(productActions.searchFailure(err)))
+      mergeMap(action => (
+          this.productService.searchProduct(action.query).pipe(
+              map(response => (productActions.searchSuccess(response))),
+              catchError((err) => of(productActions.searchFailure(err)))
           )
-        // return action;
-        }
+        )
       )
     )
   );
