@@ -1,0 +1,16 @@
+<div class="form-container container">
+  <div class="row justify-content-center p-2">
+    <form [formGroup]="form" (ngSubmit)="sendRequest()" class="card col-12 col-sm-10 col-md-8 mt-3 shadow">
+      <div class="card-body px-0 px-sm-2 px-md-4">
+        <label for="search" class="search-label">Search for a product using barcode:</label>
+        <div class="input-group mb-3">
+          <input type="search" class="form-control search-input" id="search" placeholder="Example: 5449000054227" formControlName="query">
+          <button type="submit" class="btn btn-outline-black search-btn" [disabled]="loading$ | async">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

@@ -1,4 +1,14 @@
-<header class="header">
-  <h2 class="page-title">Products search</h2>
-  <div class="dropdown" ngbDropdown></div>
+<header class="header py-2 d-flex justify-content-between align-items-center shadow">
+  <h2 class="title page-title col">Products search</h2>
+  <div class="dropdown col d-flex justify-content-end">
+    <div ngbDropdown class="d-inline-block lang-selector">
+      <button class="btn btn-outline-secondary py-2 px-3 dropdown-btn" id="dropdownBasic1" ngbDropdownToggle>Select Language</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-list">
+        <button ngbDropdownItem>English</button>
+        <button ngbDropdownItem>Ukrainian</button>
+        <button ngbDropdownItem>French</button>
+        <button ngbDropdownItem>Spanish</button>
+      </div>
+    </div>
+  </div>
 </header>

@@ -1,0 +1,39 @@
+<div class="form-container container">
+  <div class="row justify-content-center p-2 title">
+    <ng-template *ngIf="loading$ | async; then loader else productCard"></ng-template>
+    <ng-template #loader>
+      <div class="product-loader spinner-border mt-5 text-secondary" role="status"></div>
+    </ng-template>
+    <ng-template #productCard>
+      <div *ngIf="product" class="card col-12 col-sm-10 col-md-8 mt-3 shadow p-4">
+        <h2 class="title text-center mb-3">{{ product.name }}</h2>
+        <div class="carousel-container">
+          <ngb-carousel *ngIf="product.images" class="carousel">
+            <ng-template ngbSlide *ngFor="let img of product.images; index as i">
+              <div class="picsum-img-wrapper product-img-container">
+                <img [src]="img" alt="Random {{ i }} slide" class="product-img">
+              </div>
+            </ng-template>
+          </ngb-carousel>
+        </div>
+        <div class="categories mb-3">
+          <h5>Categories:</h5>
+          <div class="info-container p-3 shadow-sm">
+            <span *ngFor="let cat of product.categories" class="cat-chips shadow-sm bg-black-50">
+              {{cat}}
+            </span>
+          </div>
+        </div>
+        <div class="stores mb-3">
+          <h5>Available in stores:</h5>
+          <div class="info-container product-info p-2">{{product.stores}}</div>
+        </div>
+        <div class="stores mb-3">
+          <h5>Volume:</h5>
+          <div class="info-container product-info p-2 font-weight-bold">{{product.volume}}</div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
