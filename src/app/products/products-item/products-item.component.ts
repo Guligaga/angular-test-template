@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {loadingSelector, productSelector} from "../../reducers/product";
+import {errorSelector, loadingSelector, productSelector} from "../../reducers/product";
 import {Store} from "@ngrx/store";
 import {Observable, Subscription} from "rxjs";
 import {Product} from "../../models/product.model";
@@ -14,6 +14,7 @@ export class ProductsItemComponent implements OnInit {
   public product: Product | undefined;
   private subscription!: Subscription;
   loading$ = this.store.select(loadingSelector);
+  error$ = this.store.select(errorSelector);
 
 
   constructor(private store: Store) { }

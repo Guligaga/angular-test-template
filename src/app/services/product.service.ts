@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {ProductDataNormalizeService} from "./product-data-normalize.service";
-import {Product} from "../models/product.model";
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +21,11 @@ export class ProductService {
     return this.http
       .get(`${this.API_PATH}/${barcode}.json`)
       .pipe(
-        map((product) => (this.productDataNormalizeService.exec(product)))
+        map((product) => (
+          product
+            ? this.productDataNormalizeService.exec(product)
+            : null
+        ))
       )
   }
 

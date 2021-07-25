@@ -11,9 +11,14 @@ export class HeaderComponent implements OnInit {
 
   languages = [
     {
+      code: navigator.language.slice(0,2),
+      label: navigator.language,
+      selected: false
+    },
+    {
       code: 'en',
       label: 'English',
-      selected: true
+      selected: false
     },
     {
       code: 'fr',

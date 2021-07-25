@@ -6,13 +6,13 @@ export const PRODUCT_KEY = 'product';
 
 export interface ProductState {
   product: Product | null;
-  error: string | null
+  error: boolean
   loading: boolean
 }
 
 export const initialState: ProductState = {
   product: null,
-  error: null,
+  error: false,
   loading: false
 };
 
@@ -21,17 +21,18 @@ export const productReducer = createReducer(
   initialState,
   on(search, (state) => ({
     ...state,
-    loading: true
+    loading: true,
+    error: false,
   })),
   on(searchSuccess, (state, res) => ({
     ...state,
     product: res,
     loading: false
   })),
-  on(searchFailure, (state, err) => ({
+  on(searchFailure, (state) => ({
     ...state,
-    error: err.message,
-    loading: false
+    loading: false,
+    error: true,
   })),
 );
 

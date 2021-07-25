@@ -12,7 +12,7 @@ export const search = createAction(
 
 export const searchSuccess = createAction(
   PRODUCT_SEARCH_SUCCESS,
-  props<Product>()
+  props<any>()
 )
 ;
 export const searchFailure = createAction(
