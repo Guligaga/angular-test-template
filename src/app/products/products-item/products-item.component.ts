@@ -26,7 +26,7 @@ export class ProductsItemComponent implements OnInit {
       )
       observer.complete()
     });
-    this.subscription = productObserve$.subscribe((res) => this.product = res as Product);
+    this.subscription = product$.subscribe((res) => this.product = res as Product);
   }
 
   ngOnDestroy() {

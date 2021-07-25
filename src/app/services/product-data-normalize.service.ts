@@ -1,18 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import {Product} from "../models/product.model";
+import {Store} from "@ngrx/store";
+import {languageSelector} from "../reducers/language";
+import {Observable, Subscription} from "rxjs";
 
 
-// export interface Product {
-//   name: string;
-//   images: string[];
-//   categories: string[];
-//   ingredients: string
-//   stores: string[];
-//   volume: string;
-// }
 type ImageObj = {
   display: {
     en: string
@@ -24,9 +16,13 @@ type ImageObj = {
 })
 export class ProductDataNormalizeService {
   private data: any;
-  private mockLang: string = 'en';
+  private subscription!: Subscription;
+  language!: string;
 
-  constructor() {}
+  constructor(private store: Store) {
+    const language$ = this.store.select(languageSelector);
+    this.subscription = language$.subscribe((res) => this.language = res as string);
+  }
 
   public exec(data: any) {
     this.setData(data.product);
@@ -38,7 +34,6 @@ export class ProductDataNormalizeService {
       stores: this.stores,
       volume: this.volume,
     }
-    console.log(res);
     return res;
   }
 
@@ -63,7 +58,10 @@ export class ProductDataNormalizeService {
   }
 
   private get ingredients(): string {
-    return this.data[`ingredients_text_with_allergens_${this.mockLang}`];
+    console.log('Search', this.language)
+    return this.data[`ingredients_text_with_allergens_${this.language}`]
+      // || this.data['ingredients_text_with_allergens_en']
+      || 'No available ingredients list on current locale';
   }
 
   private get stores(): string {

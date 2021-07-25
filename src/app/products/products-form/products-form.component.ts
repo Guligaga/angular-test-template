@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {Store} from "@ngrx/store";
 import {loadingSelector} from "../../reducers/product";
-import {search} from "../../actions/products.actions";
+import * as productActions from "../../actions/products.actions";
 
 @Component({
   selector: 'app-products-form',
@@ -23,6 +23,6 @@ export class ProductsFormComponent implements OnInit {
 
   sendRequest() {
     const formData = {...this.form.value};
-    this.store.dispatch(search(formData));
+    this.store.dispatch(productActions.search(formData));
   }
 }

@@ -26,32 +26,6 @@ export class ProductEffects {
     private productService: ProductService
   ) {}
 
-  // updatedAt$ = createEffect(() => this.actions$.pipe(
-  //   ofType(productActions.search),
-  //   map(() => productActions.searchSuccess({
-  //     name: 'Coca-cola',
-  //     images: ['some-image.jpg'],
-  //     categories: ['drink', 'soda'],
-  //     stores: 'Auchan, Metro',
-  //     ingredients: 'Nitrates, e136',
-  //     volume: '1 L'
-  //   }))
-  // ));
-
-  // loadMovies$ = createEffect(() =>
-  //
-  //   this.actions$.pipe(
-  //     ofType(productActions.search),
-  //     mergeMap((action) => this.productService.searchProduct(action.query)
-  //       .pipe(
-  //         map(response => (productActions.searchSuccess(response))),
-  //         catchError(() => of(productActions.searchFailure()))
-  //       )
-  //     )
-  //   )
-  // );
-
-
   search$ = createEffect(() =>
     this.actions$.pipe(
       ofType(productActions.search),
@@ -66,32 +40,5 @@ export class ProductEffects {
       )
     )
   );
-
-  // search$ = createEffect(
-  //   () => ({ debounce = 300, scheduler = asyncScheduler } = {}) =>
-  //     this.actions$.pipe(
-  //       ofType(FindBookPageActions.searchBooks),
-  //       debounceTime(debounce, scheduler),
-  //       switchMap(({ query }) => {
-  //         if (query === '') {
-  //           return empty;
-  //         }
-  //
-  //         const nextSearch$ = this.actions$.pipe(
-  //           ofType(FindBookPageActions.searchBooks),
-  //           skip(1)
-  //         );
-  //
-  //         return this.googleBooks.searchBooks(query).pipe(
-  //           takeUntil(nextSearch$),
-  //           map((books: Book[]) => BooksApiActions.searchSuccess({ books })),
-  //           catchError((err) =>
-  //             of(BooksApiActions.searchFailure({ errorMsg: err.message }))
-  //           )
-  //         );
-  //       })
-  //     )
-  // );
-
 
 }

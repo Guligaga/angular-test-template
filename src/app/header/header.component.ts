@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Store} from "@ngrx/store";
+import * as languageActions from "../actions/language.actions";
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  languages = [
+    {
+      code: 'en',
+      label: 'English',
+      selected: true
+    },
+    {
+      code: 'fr',
+      label: 'French',
+      selected: false
+    },
+    {
+      code: 'de',
+      label: 'Deutch',
+      selected: false
+    },
+    {
+      code: 'es',
+      label: 'Spanish',
+      selected: false
+    },
+  ];
+
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
+    const lang = navigator.language.slice(0, 2);
+    console.log('onInit', lang)
+    this.store.dispatch(languageActions.change({language: lang}))
+  }
+
+  setLanguage(e: Event) {
+    const target = e.target as HTMLSelectElement;
+    this.store.dispatch(languageActions.change({language: target.value}))
   }
 
 }
